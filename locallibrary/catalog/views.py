@@ -31,3 +31,22 @@ def index(request):
 
     # Render/create the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+# part 6
+from django.views import generic
+
+class BookListView(generic.ListView):
+    model = Book
+    paginate_by = 10
+
+class BookDetailView(generic.DetailView):
+    model = Book
+
+class AuthorListView(generic.ListView):
+    model = Author
+    template_name = 'catalog/author_list.html'
+    context_object_name = 'authors'
+    paginate_by = 10
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
