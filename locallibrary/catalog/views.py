@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 # Create your views here.
 from .models import Book, Author, BookInstance, Genre
 
@@ -20,6 +19,14 @@ def index(request):
     # The 'all()' is implied by default.
     num_authors = Author.objects.count()
 
+    
+    # Uncomment below to reset counter
+    # request.session['num_visits'] = 0
+    
+    # Number of visits to this view, as counted in the session variable.
+    num_visits = request.session.get('num_visits', 0) + 1
+    request.session['num_visits'] = num_visits
+
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
@@ -27,6 +34,7 @@ def index(request):
         'num_authors': num_authors,
         'num_genres' : num_genres,
         'num_books_with_word' : num_books_with_word,
+        'num_visits': num_visits,
     }
 
     # Render/create the HTML template index.html with the data in the context variable
