@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from catalog.api import api  # Import API from catalog
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("api/", api.urls),  # include API routes
 ]
 
 # Use include() to add paths from the catalog application
