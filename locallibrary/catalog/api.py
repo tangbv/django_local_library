@@ -4,9 +4,6 @@ from typing import List
 from .models import Author, Genre, Language, Book, BookInstance
 from ninja.security import HttpBearer
 
-
-
-
 class GlobalAuth(HttpBearer):
    def authenticate(self, request, token):
        print(f"Token received: {token}")  # Debugging line
